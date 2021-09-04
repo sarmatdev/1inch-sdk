@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/sarmatdev/1inch-sdk",
   "author": "sarmatdev <github.com/sarmatdev>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.4.2"
+  }
 }
