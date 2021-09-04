@@ -6,7 +6,9 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "removeComments": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "types": ["node"],
     "outDir": "./dist",
     "baseUrl": "src/",
     "rootDir": "./src"
