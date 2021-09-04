@@ -1,0 +1,9 @@
+{
+  "name": "1inch-sdk",
+  "version": "0.1.0",
+  "description": "⚒️ An SDK for building applications on top of 1inch Aggregator API",
+  "main": "index.js",
+  "repository": "https://github.com/sarmatdev/1inch-sdk",
+  "author": "sarmatdev <github.com/sarmatdev>",
+  "license": "MIT"
+}
