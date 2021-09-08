@@ -3,3 +3,9 @@ export function buildRequestParams(params: any): any {
     ...params
   }
 }
+
+export function toHex(value: string): string {
+  const intValue = parseInt(value)
+
+  return `0x${intValue.toString(16)}`
+}
