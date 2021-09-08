@@ -1,6 +1,6 @@
 import httpClient from './httpClient'
 import { buildRequestParams, toHex } from './utils'
-import { IBlockchains, OneInchProps, ICalldata, IQuote } from './types'
+import { IBlockchains, OneInchProps, ICalldata, IQuote, ISwap } from './types'
 
 class OneInch {
   protected apiUrl = 'https://api.1inch.exchange'
@@ -11,6 +11,12 @@ class OneInch {
     if (config && config.apiUrl) this.apiUrl = config.apiUrl
     if (config && config.apiVersion) this.apiVersion = config.apiVersion
     if (config && config.chainId) this.chainId = config.chainId
+  }
+
+  public async getSwap(args: ISwap) {
+    const data = await this.fetchRequest('/swap', args)
+
+    return data
   }
 
   public async getQuote(args: IQuote) {
