@@ -38,6 +38,18 @@ class OneInch {
     return data
   }
 
+  public async getProtocols() {
+    const data = await this.fetchRequest('/protocols')
+
+    return data
+  }
+
+  public async getProtocolsImages() {
+    const data = await this.fetchRequest('/protocols/images')
+
+    return data
+  }
+
   public async healthcheck() {
     const data = await this.fetchRequest('/healthcheck')
 
