@@ -1,5 +1,5 @@
 import httpClient from './httpClient'
-import { buildRequestParams } from './utils'
+import { buildRequestParams, toHex } from './utils'
 import { IBlockchains, OneInchProps, ICalldata } from './types'
 
 class OneInch {
@@ -15,6 +15,7 @@ class OneInch {
 
   public async getCalldata(args: ICalldata) {
     const data = await this.fetchRequest('/approve/calldata', args)
+    data.value = toHex(data.value)
 
     return data
   }
