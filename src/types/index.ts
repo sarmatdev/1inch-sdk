@@ -10,6 +10,20 @@ export interface ICalldata {
   infinity?: boolean
 }
 
+export interface IQuote {
+  fromTokenAddress: string
+  toTokenAddress: string
+  amount: string
+  fee?: string
+  protocols?: string
+  gasPrice?: string
+  complexityLevel?: string
+  connectorTokens?: string
+  gasLimit?: number
+  parts?: number
+  mainRouteParts?: number
+}
+
 export enum IBlockchains {
   ETH = 1,
   BSC = 56,
