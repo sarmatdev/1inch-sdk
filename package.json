@@ -6,6 +6,11 @@
   "repository": "https://github.com/sarmatdev/1inch-sdk",
   "author": "sarmatdev <github.com/sarmatdev>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write .",
+    "lint": "eslint"
+  },
   "devDependencies": {
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
