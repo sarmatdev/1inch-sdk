@@ -20,6 +20,12 @@ class OneInch {
     return data
   }
 
+  public async getSpender() {
+    const data = await this.fetchRequest('/approve/spender')
+
+    return data
+  }
+
   public async healthcheck() {
     const data = await this.fetchRequest('/healthcheck')
 
