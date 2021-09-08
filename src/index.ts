@@ -13,44 +13,44 @@ class OneInch {
     if (config && config.chainId) this.chainId = config.chainId
   }
 
-  public async getSwap(args: ISwap) {
+  public async swap(args: ISwap) {
     const data = await this.fetchRequest('/swap', args)
 
     return data
   }
 
-  public async getQuote(args: IQuote) {
+  public async quote(args: IQuote) {
     const data = await this.fetchRequest('/quote', args)
 
     return data
   }
 
-  public async getCalldata(args: ICalldata) {
+  public async approveCalldata(args: ICalldata) {
     const data = await this.fetchRequest('/approve/calldata', args)
     data.value = toHex(data.value)
 
     return data
   }
 
-  public async getSpender() {
+  public async approveSpender() {
     const data = await this.fetchRequest('/approve/spender')
 
     return data
   }
 
-  public async getProtocols() {
+  public async protocols() {
     const data = await this.fetchRequest('/protocols')
 
     return data
   }
 
-  public async getProtocolsImages() {
+  public async protocolsImages() {
     const data = await this.fetchRequest('/protocols/images')
 
     return data
   }
 
-  public async getTokens() {
+  public async tokens() {
     const data = await this.fetchRequest('/tokens')
 
     return data
