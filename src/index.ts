@@ -50,6 +50,12 @@ class OneInch {
     return data
   }
 
+  public async getTokens() {
+    const data = await this.fetchRequest('/tokens')
+
+    return data
+  }
+
   public async healthcheck() {
     const data = await this.fetchRequest('/healthcheck')
 
