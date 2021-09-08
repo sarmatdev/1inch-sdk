@@ -1,5 +1,6 @@
 import httpClient from './httpClient'
-import { IBlockchains, OneInchProps } from './types'
+import { buildRequestParams, toHex } from './utils'
+import { IBlockchains, OneInchProps, ICalldata } from './types'
 
 class OneInch {
   protected apiUrl = 'https://api.1inch.exchange'
@@ -12,17 +13,32 @@ class OneInch {
     if (config && config.chainId) this.chainId = config.chainId
   }
 
-  public async healthcheck() {
-    const data = await this.fetchRequest('healthcheck')
+  public async getCalldata(args: ICalldata) {
+    const data = await this.fetchRequest('/approve/calldata', args)
+    data.value = toHex(data.value)
 
     return data
   }
 
-  private async fetchRequest(path: string) {
+  public async getSpender() {
+    const data = await this.fetchRequest('/approve/spender')
+
+    return data
+  }
+
+  public async healthcheck() {
+    const data = await this.fetchRequest('/healthcheck')
+
+    return data
+  }
+
+  private async fetchRequest(path: string, args?: unknown) {
+    const params = buildRequestParams(args)
     const url = `${this.apiUrl}/${this.apiVersion}/${this.chainId}`
 
     try {
-      const { data } = await httpClient({ baseURL: url }).get(path)
+      const { data } = await httpClient({ baseURL: url }).get(path, { params })
+
       return data
     } catch (err) {
       throw new Error(`Can not fetch ${url} : ${err}`)

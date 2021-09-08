@@ -4,6 +4,12 @@ export interface OneInchProps {
   chainId?: number
 }
 
+export interface ICalldata {
+  tokenAddress: string
+  amount?: string
+  infinity?: boolean
+}
+
 export enum IBlockchains {
   ETH = 1,
   BSC = 56,
