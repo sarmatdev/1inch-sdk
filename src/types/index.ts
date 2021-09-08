@@ -24,6 +24,27 @@ export interface IQuote {
   mainRouteParts?: number
 }
 
+export interface ISwap {
+  fromTokenAddress: string
+  toTokenAddress: string
+  amount: string
+  fromAddress: string
+  slippage: number
+  protocols?: string
+  destReceiver?: string
+  referrerAddress?: string
+  fee?: number
+  gasPrice?: string
+  burnChi?: boolean
+  complexityLevel?: string
+  connectorTokens?: string
+  allowPartialFill?: boolean
+  disableEstimate?: boolean
+  gasLimit?: number
+  mainRouteParts?: number
+  parts?: number
+}
+
 export enum IBlockchains {
   ETH = 1,
   BSC = 56,
