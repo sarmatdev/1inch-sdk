@@ -1,3 +1,4 @@
+import { utils } from 'ethers'
 import httpClient from './httpClient'
 import { buildRequestParams, toHex } from './utils'
 import { IBlockchains, OneInchProps, ICalldata, IQuote, ISwap } from './types'
@@ -13,44 +14,68 @@ class OneInch {
     if (config && config.chainId) this.chainId = config.chainId
   }
 
-  public async getSwap(args: ISwap) {
+  public async swap(args: ISwap) {
+    if (!utils.isAddress(args.fromTokenAddress)) {
+      throw new Error('"fromTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.toTokenAddress)) {
+      throw new Error('"toTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.fromAddress)) {
+      throw new Error('"fromAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/swap', args)
 
     return data
   }
 
-  public async getQuote(args: IQuote) {
+  public async quote(args: IQuote) {
+    if (!utils.isAddress(args.fromTokenAddress)) {
+      throw new Error('"fromTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.toTokenAddress)) {
+      throw new Error('"toTokenAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/quote', args)
 
     return data
   }
 
-  public async getCalldata(args: ICalldata) {
+  public async approveCalldata(args: ICalldata) {
+    if (!utils.isAddress(args.tokenAddress)) {
+      throw new Error('"tokenAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/approve/calldata', args)
     data.value = toHex(data.value)
 
     return data
   }
 
-  public async getSpender() {
+  public async approveSpender() {
     const data = await this.fetchRequest('/approve/spender')
 
     return data
   }
 
-  public async getProtocols() {
+  public async protocols() {
     const data = await this.fetchRequest('/protocols')
 
     return data
   }
 
-  public async getProtocolsImages() {
+  public async protocolsImages() {
     const data = await this.fetchRequest('/protocols/images')
 
     return data
   }
 
-  public async getTokens() {
+  public async tokens() {
     const data = await this.fetchRequest('/tokens')
 
     return data
@@ -67,7 +92,7 @@ class OneInch {
     const url = `${this.apiUrl}/${this.apiVersion}/${this.chainId}`
 
     try {
-      const { data } = await httpClient({ baseURL: url }).get(path, { params })
+      const data = await httpClient({ baseURL: url }).get(path, { params })
 
       return data
     } catch (err) {
