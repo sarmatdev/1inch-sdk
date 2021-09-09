@@ -92,7 +92,7 @@ class OneInch {
     const url = `${this.apiUrl}/${this.apiVersion}/${this.chainId}`
 
     try {
-      const { data } = await httpClient({ baseURL: url }).get(path, { params })
+      const data = await httpClient({ baseURL: url }).get(path, { params })
 
       return data
     } catch (err) {
