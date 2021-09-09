@@ -1,3 +1,4 @@
+import { utils } from 'ethers'
 import httpClient from './httpClient'
 import { buildRequestParams, toHex } from './utils'
 import { IBlockchains, OneInchProps, ICalldata, IQuote, ISwap } from './types'
@@ -14,18 +15,42 @@ class OneInch {
   }
 
   public async swap(args: ISwap) {
+    if (!utils.isAddress(args.fromTokenAddress)) {
+      throw new Error('"fromTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.toTokenAddress)) {
+      throw new Error('"toTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.fromAddress)) {
+      throw new Error('"fromAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/swap', args)
 
     return data
   }
 
   public async quote(args: IQuote) {
+    if (!utils.isAddress(args.fromTokenAddress)) {
+      throw new Error('"fromTokenAddress" is not valid.')
+    }
+
+    if (!utils.isAddress(args.toTokenAddress)) {
+      throw new Error('"toTokenAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/quote', args)
 
     return data
   }
 
   public async approveCalldata(args: ICalldata) {
+    if (!utils.isAddress(args.tokenAddress)) {
+      throw new Error('"tokenAddress" is not valid.')
+    }
+
     const data = await this.fetchRequest('/approve/calldata', args)
     data.value = toHex(data.value)
 
