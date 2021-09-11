@@ -2,12 +2,14 @@
   "name": "1inch-sdk",
   "version": "0.1.0",
   "description": "⚒️ An SDK for building applications on top of 1inch Aggregator API",
-  "main": "index.js",
   "repository": "https://github.com/sarmatdev/1inch-sdk",
   "author": "sarmatdev <github.com/sarmatdev>",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "format": "prettier --write .",
     "lint": "eslint",
     "test": "jest"
@@ -18,17 +20,21 @@
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
+    "esbuild": "^0.12.26",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.1.1",
     "prettier": "^2.3.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-esbuild": "^4.5.0",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "axios": "^0.21.2",
-    "ethers": "^5.4.6"
+    "@ethersproject/address": "^5.4.0",
+    "axios": "^0.21.2"
   }
 }
