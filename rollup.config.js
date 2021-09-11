@@ -1,10 +1,10 @@
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 
-const bundle = config => ({
+const bundle = (config) => ({
   ...config,
   input: 'src/index.ts',
-  external: id => !/^[./]/.test(id),
+  external: (id) => !/^[./]/.test(id)
 })
 
 export default [
@@ -14,20 +14,20 @@ export default [
       {
         file: `dist/index.js`,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: true
       },
       {
         file: `dist/index.mjs`,
         format: 'es',
-        sourcemap: true,
-      },
-    ],
+        sourcemap: true
+      }
+    ]
   }),
   bundle({
     plugins: [dts()],
     output: {
       file: `dist/index.d.ts`,
-      format: 'es',
-    },
-  }),
+      format: 'es'
+    }
+  })
 ]
